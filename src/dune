@@ -1,0 +1,22 @@
+(executables
+  (names xvmlib xvmrun)
+  (public_names - xvmrun)
+  (libraries xvm.engine js_of_ocaml)
+  (preprocess (pps js_of_ocaml-ppx))
+  (modes exe byte)
+  (package xvm))
+
+(rule
+  (target xvmlib.js.bc)
+  (deps (file xvmlib.bc))
+  (action (run ocamlfind ocamlc -g -o xvmlib.js.bc
+     -package menhirLib,batteries,hex,js_of_ocaml
+     -linkpkg ../libs/xvm/xvm.cma
+     .xvmlib.eobjs/byte/dune__exe__Xvmlib.cmo)))
+
+(rule
+  (target xvmlib.js)
+  (deps (file xvmlib.js.bc))
+  (action (run %{bin:js_of_ocaml}
+     --disable genprim --pretty
+     --source-map --source-map-inline --no-inline -o %{target} %{deps})))

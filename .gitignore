@@ -1,0 +1,11 @@
+_build/
+
+html/3rdparty/*/
+html/node_modules/
+html/xvmlib.js
+html/xvmlib.map
+
+*.native
+*.byte
+
+.merlin

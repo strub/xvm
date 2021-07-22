@@ -1,0 +1,12 @@
+(ocamllex lexer)
+
+(menhir
+  (modules parser)
+  (flags --explain --inspection --table --dump))
+
+(library
+  (name xvm)
+  (public_name xvm.engine)
+  (libraries menhirLib batteries hex)
+  (synopsis "X Virtual Machine (engine library)")
+)

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+  <meta name="viewport"
+    content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>XVM</title>
+
+  <link rel="stylesheet" type="text/css" href="3rdparty/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="3rdparty/bootstrap/dist/css/bootstrap-theme.css" />
+
+  <link rel="stylesheet" type="text/css" href="xvm.css" />
+
+  <style type="text/css" media="screen">
+  body {
+    padding-bottom: 70px;
+  }
+
+  #editor, #result {
+    height: 400px;
+    margin: 10px 0;
+  }
+
+  #terminal {
+    margin-top: 10px;
+    height: 200px;
+    border-left: 1px solid #ccc;
+  }
+
+  .top-buffer {
+    margin-top: 20px;
+  }
+
+  .pc-marker {
+    position: absolute;
+    background: rgba(255, 0, 0, 0.1);
+    z-index: 20;
+  }
+
+  .alert {
+    padding-top: 5px; padding-bottom: 5px;
+    margin-top : 5px; margin-bottom : 0px;
+  }
+  </style>
+
+  <script type="text/javascript" src="3rdparty/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="3rdparty/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="3rdparty/ace-builds/src/ace.js"></script>
+
+  <script type="text/javascript" src="ace-modes/mode-xvm.js"></script>
+  <script type="text/javascript" src="xvmlib.js"></script>
+  <script type="text/javascript" src="xvmrun.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">XVM --- INF321</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="row top-buffer">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-4">
+            <button type="submit" id="run" class="btn btn-primary btn-block">
+              Run (< 128 steps)
+            </button>
+          </div>
+          <div class="col-sm-4">
+            <button type="submit" id="step" class="btn btn-primary btn-block">
+              Step
+            </button>
+          </div>
+          <div class="col-sm-4">
+            <button type="submit" id="reset" class="btn btn-primary btn-block">
+              Parse / Reset
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="alert alert-success" role="alert">
+          Execution trace
+        </div> 
+        <div class="alert alert-danger" id="msg" role="alert"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6"><div id="editor"></div></div>
+      <div class="col-sm-6"><div id="result"></div></div>
+    </div>
+
+    <div class="row">
+      <div class="alert alert-success">Terminal</div>
+      <div class="col-sm-12"><div id="terminal"></div></div>
+    </div>
+  </div>
+
+  <hr />
+
+  <footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <div class="navbar-collapse collapse" id="footer-body">
+          <ul class="nav navbar-nav">
+            <li><a href="#">XVM (2016-17)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
